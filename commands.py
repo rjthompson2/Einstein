@@ -78,6 +78,7 @@ class Commands():
                 while listening:
                     chunk = self.listener.listen()
                     if 'Einstein stop recording' in chunk:
+                        recording += data.strip('Einstein stop recording')
                         break
                     recording += chunk
                 file = open('recording.txt', 'w')
@@ -87,10 +88,10 @@ class Commands():
                     strTime = datetime.datetime.now().strftime("% H:% M:% S")
                     file.write(strTime)
                     file.write(" :- ")
-                    file.write(note)
+                    file.write(recording)
                     self.respond("Note saved with the date")
                 else:
-                    file.write(note)
+                    file.write(recording)
                     self.respond("Note saved")
 
             elif "playback" in data:
