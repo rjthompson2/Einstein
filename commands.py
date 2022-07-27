@@ -20,9 +20,6 @@ class Commands():
         elif not self.sleep:
             if "what time is it" in data or "what's the time" in data:
                 self.respond(ctime())
-            
-            #TODO provide list of commands a user can input
-            # if "list commands" in data or "help" in data:
                 
             elif "okay thank you" in data:
                 self.sleep = True
@@ -65,7 +62,7 @@ class Commands():
                 print(calculation)
                 self.respond(data + " is " + str(calculation))
             
-            elif "help me" in data or "show commands" in data or "what do i do" in data:
+            elif "help me" in data or "show commands" in data or "what do i do" in data or "list commands" in data:
                 file = open(path+"help.txt", "r")
                 read_back = file.read()
                 print(read_back)
