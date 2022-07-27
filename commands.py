@@ -9,6 +9,7 @@ from arguementMap import ArguementMapTimer
 
 path = "/Users/rileythompson//Desktop/Einstein/" #SET YOUR OWN PATH TO EINSTEIN
 
+
 class Commands():
     def __init__(self, listener:Listener):
         self.sleep = False

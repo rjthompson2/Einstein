@@ -1,5 +1,6 @@
 import speech_recognition as sr
 
+
 class Listener():
     def __init__(self):
         self.listening = True
