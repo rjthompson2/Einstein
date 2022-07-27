@@ -11,7 +11,7 @@ class Commands():
 
     def understand(self, data):
         if not self.sleep:
-            if "what time is it" in data:
+            if "what time is it" in data or "what's the time" in data:
                 self.respond(ctime())
             
             #TODO provide list of commands a user can input
