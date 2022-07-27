@@ -1,20 +1,33 @@
 import subprocess
+from playsound import playsound
+
 class Timer():
     def __init__(self):
         self.set = False
 
-    def set_time(self, amount:str):
+    def set_time(self, amount:str) -> None:
         # echo /usr/bin/the_command options | at now + 1 day
-        command = "echo /usr/bin/the_command options | at now + "
-        self.check_amount(amount)
+        path = "~/Desktop" + "/Einstein/timer.py"
+        command = f"python {path} | at "
         bash_command = command + amount
+        print(bash_command)
         process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
-        return
 
-    def check_amount(self, amount:str) -> str:
-        #checks that the amount is correct
-        return
+    # def set_time_map(self, arg_map:dict) -> None:
+    #     command = ""
+    #     if "for" in arg_map:
+    #         return
+    #     if "at" in arg_map:
+    #         return
+    #     if "on" in arg_map:
+    #         return
+    #     if "in" in arg_map:
+    #         return
 
-    def alert(self):
-        return
+    def alert(self) -> None:
+        playsound('Desktop/Einstein/alarm.wav')
+
+if __name__ == "__main__":
+    t = Timer()
+    t.alert()

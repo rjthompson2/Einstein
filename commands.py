@@ -2,8 +2,10 @@ from typing import Tuple
 from time import ctime
 from gtts import gTTS
 from listener import Listener
+from timer import Timer
 import os
 import datetime
+from arguementMap import ArguementMapTimer
 
 path = "/Users/rileythompson//Desktop/Einstein/" #SET YOUR OWN PATH TO EINSTEIN
 
@@ -11,6 +13,7 @@ class Commands():
     def __init__(self, listener:Listener):
         self.sleep = False
         self.listener = listener
+        self.timer = Timer()
 
     def understand(self, data) -> None:
         if "hey Einstein" in data or "Einstein you there?" in data:
@@ -101,6 +104,16 @@ class Commands():
                     self.respond(read_back)
                 else:
                     self.respond("Nothing in your notes")
+
+            elif "set a timer" in data:
+                data = data.lstrip("set a timer")
+                # print(data)
+                data = data.lstrip(" for ")
+                print(data)
+                self.timer.set_time(data)
+                # arg_map = ArguementMapTimer()
+                # arg_map.add(data.split())
+                # self.timer.set_time_map(arg_map.get_map())
 
             else:
                 print('Unable to process command')
