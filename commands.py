@@ -9,7 +9,7 @@ class Commands():
         self.sleep = False
         self.listener = listener
 
-    def understand(self, data):
+    def understand(self, data) -> None:
         if not self.sleep:
             if "what time is it" in data or "what's the time" in data:
                 self.respond(ctime())
