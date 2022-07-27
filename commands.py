@@ -3,6 +3,7 @@ from time import ctime
 from gtts import gTTS
 from listener import Listener
 import os
+import datetime
 
 class Commands():
     def __init__(self, listener:Listener):
@@ -10,7 +11,11 @@ class Commands():
         self.listener = listener
 
     def understand(self, data) -> None:
-        if not self.sleep:
+        if "hey Einstein" in data:
+            self.respond("yes?")
+            self.sleep = False
+
+        elif not self.sleep:
             if "what time is it" in data or "what's the time" in data:
                 self.respond(ctime())
             
@@ -53,15 +58,12 @@ class Commands():
 
             else:
                 print('Unable to process command')
-                self.respond("sorry I did not get that")
+                self.respond("Sorry I did not get that")
 
-        elif "hey Einstein" in data:
-            self.respond("yes?")
-            self.sleep = False
                 
         if "stop listening" in data:
             print('Listening stopped')
-            self.respond("okay shutting down")
+            self.respond("Okay shutting down")
             self.listener.listening = False
         
     def respond(self, audioString:str) -> None:
