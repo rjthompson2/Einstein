@@ -11,7 +11,7 @@ class Commands():
         self.listener = listener
 
     def understand(self, data) -> None:
-        if "hey Einstein" in data:
+        if "hey Einstein" in data or "Einstein you there?" in data:
             self.respond("yes?")
             self.sleep = False
 
@@ -41,20 +41,33 @@ class Commands():
                     file.write(strTime)
                     file.write(" :- ")
                     file.write(note)
+                    self.respond("Note saved with the date")
                 else:
                     file.write(note)
+                    self.respond("Note saved")
             
             elif "show note" in data or "read note" in data or "show notes" in data or "read notes" in data:
                 self.respond("Reading notes")
                 file = open("notes.txt", "r")
                 print(file.read())
-                self.respond(file.read(6))
+                read_back = file.read(6)
+                print(read_back)
+                if read_back:
+                    self.respond(read_back)
+                else:
+                    self.respond("Nothing in your notes")
 
             elif "calculate" in data:
                 data = data.lstrip('calculate ')
                 calculation = eval(data)
                 print(calculation)
                 self.respond(data + " is " + str(calculation))
+            
+            elif "help me" in data or "show commands" in data or "what do i do" in data:
+                file = open("help.txt", "r")
+                read_back = file.read()
+                print(read_back)
+                self.respond(read_back)
 
             else:
                 print('Unable to process command')

@@ -1,0 +1,7 @@
+To activate say 'hey Einstein'
+To sleep say 'go to sleep'
+To turn off say 'stop listening'
+To get the time say 'what time is it?'
+To write a note say 'write a note'
+To read the note say 'show note'
+To do math say 'calculate' followed by the problem
