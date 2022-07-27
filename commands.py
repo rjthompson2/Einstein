@@ -5,7 +5,7 @@ from listener import Listener
 import os
 import datetime
 
-path = "/Users/rileythompson//Desktop/Einstein/"
+path = "/Users/rileythompson//Desktop/Einstein/" #SET YOUR OWN PATH TO EINSTEIN
 
 class Commands():
     def __init__(self, listener:Listener):
