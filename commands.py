@@ -25,7 +25,7 @@ class Commands():
                 self.sleep = True
                 self.respond("Say 'hey Einstein' to wake me")
 
-            elif "write a note" in query:
+            elif "write a note" in data:
                 self.respond("What should i write?")
                 note = self.listener.listen()
                 file = open('notes.txt', 'w')
@@ -39,11 +39,17 @@ class Commands():
                 else:
                     file.write(note)
             
-            elif "show note" in query or "read note" in query or "show notes" in query or "read notes" in query:
+            elif "show note" in data or "read note" in data or "show notes" in data or "read notes" in data:
                 self.respond("Reading notes")
                 file = open("notes.txt", "r")
                 print(file.read())
                 self.respond(file.read(6))
+
+            elif "calculate" in data:
+                data = data.lstrip('calculate ')
+                calculation = eval(data)
+                print(calculation)
+                self.respond(data + " is " + str(calculation))
 
             else:
                 print('Unable to process command')
