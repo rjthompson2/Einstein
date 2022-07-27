@@ -5,6 +5,8 @@ from listener import Listener
 import os
 import datetime
 
+path = "/Users/rileythompson//Desktop/Einstein/"
+
 class Commands():
     def __init__(self, listener:Listener):
         self.sleep = False
@@ -64,10 +66,43 @@ class Commands():
                 self.respond(data + " is " + str(calculation))
             
             elif "help me" in data or "show commands" in data or "what do i do" in data:
-                file = open("help.txt", "r")
+                file = open(path+"help.txt", "r")
                 read_back = file.read()
                 print(read_back)
                 self.respond(read_back)
+
+            elif "record" in data or "start recording" in data:
+                self.respond("Recording now")
+                recording = ""
+                listening = True
+                while listening:
+                    chunk = self.listener.listen()
+                    if 'Einstein stop recording' in chunk:
+                        break
+                    recording += chunk
+                file = open('recording.txt', 'w')
+                self.respond("Should I include the time?")
+                answer = self.listener.listen()
+                if 'yes' in answer or 'sure' in answer or 'yeah' in answer:
+                    strTime = datetime.datetime.now().strftime("% H:% M:% S")
+                    file.write(strTime)
+                    file.write(" :- ")
+                    file.write(note)
+                    self.respond("Note saved with the date")
+                else:
+                    file.write(note)
+                    self.respond("Note saved")
+
+            elif "playback" in data:
+                self.respond("Playing back recording")
+                file = open("recording.txt", "r")
+                print(file.read())
+                read_back = file.read()
+                print(read_back)
+                if read_back:
+                    self.respond(read_back)
+                else:
+                    self.respond("Nothing in your notes")
 
             else:
                 print('Unable to process command')

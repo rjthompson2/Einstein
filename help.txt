@@ -4,4 +4,6 @@ To turn off say 'stop listening'
 To get the time say 'what time is it?'
 To write a note say 'write a note'
 To read the note say 'show note'
+To record something say 'record' the recording will stop once you say 'Einstein stop recording'
+To playback the recording say 'playback'
 To do math say 'calculate' followed by the problem
