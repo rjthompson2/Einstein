@@ -23,7 +23,27 @@ class Commands():
 
             elif "go to sleep" in data:
                 self.sleep = True
-                self.respond("say 'hey Einstein' to wake me")
+                self.respond("Say 'hey Einstein' to wake me")
+
+            elif "write a note" in query:
+                self.respond("What should i write?")
+                note = self.listener.listen()
+                file = open('notes.txt', 'w')
+                self.respond("Should I include the time?")
+                answer = self.listener.listen()
+                if 'yes' in answer or 'sure' in answer or 'yeah' in answer:
+                    strTime = datetime.datetime.now().strftime("% H:% M:% S")
+                    file.write(strTime)
+                    file.write(" :- ")
+                    file.write(note)
+                else:
+                    file.write(note)
+            
+            elif "show note" in query or "read note" in query or "show notes" in query or "read notes" in query:
+                self.respond("Reading notes")
+                file = open("notes.txt", "r")
+                print(file.read())
+                self.respond(file.read(6))
 
             else:
                 print('Unable to process command')
