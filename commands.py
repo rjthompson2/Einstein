@@ -3,9 +3,11 @@ from time import ctime
 from gtts import gTTS
 from listener import Listener
 from timer import Timer
+from arguementMap import ArguementMapTimer
+from threading import Thread
+# from thread import start_new_thread
 import os
 import datetime
-from arguementMap import ArguementMapTimer
 
 path = "/Users/rileythompson//Desktop/Einstein/" #SET YOUR OWN PATH TO EINSTEIN
 
@@ -14,9 +16,13 @@ class Commands():
     def __init__(self, listener:Listener):
         self.sleep = False
         self.listener = listener
-        self.timer = Timer()
 
     def understand(self, data) -> None:
+        if "stop listening" in data:
+            print('Listening stopped')
+            self.respond("Okay shutting down")
+            self.listener.listening = False
+
         if "hey Einstein" in data or "Einstein you there?" in data:
             self.respond("yes?")
             self.sleep = False
@@ -106,25 +112,23 @@ class Commands():
                 else:
                     self.respond("Nothing in your notes")
 
-            elif "set a timer" in data:
+            elif "set a timer" in data or 'set an alarm' in data:
                 data = data.lstrip("set a timer")
-                # print(data)
                 data = data.lstrip(" for ")
-                print(data)
-                self.timer.set_time(data)
-                # arg_map = ArguementMapTimer()
-                # arg_map.add(data.split())
-                # self.timer.set_time_map(arg_map.get_map())
+                timer = Timer()
+                timer.set_time(data)
+                pid = os.fork()
+                if pid > 0:
+                    print(1)
+                    self.respond("Okay timer set")
+                else:
+                    print(0)
+                    timer.alert()
 
             else:
                 print('Unable to process command')
                 self.respond("Sorry I did not get that")
 
-                
-        if "stop listening" in data:
-            print('Listening stopped')
-            self.respond("Okay shutting down")
-            self.listener.listening = False
         
     def respond(self, audioString:str) -> None:
         print(audioString)
