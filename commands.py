@@ -18,6 +18,9 @@ class Commands():
         self.listener = listener
 
     def understand(self, data) -> None:
+        if "nevermind" in data:
+            data = data.split('nevermind')[-1]
+
         if "stop listening" in data:
             print('Listening stopped')
             self.respond("Okay shutting down")
