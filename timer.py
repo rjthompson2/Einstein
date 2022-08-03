@@ -3,8 +3,8 @@ import time
 import os
 from gtts import gTTS
 
-#TODO sound not playing
-path = '/Users/rileythompson/' + 'Desktop/Einstein/alarm.wav'
+path = '/Users/rileythompson/' + 'Desktop/Einstein/alarm.wav' #CHANGE DIRECTORY TO THE .WAV FILE
+
 class Timer():
     def __init__(self):
         self.time = 0
@@ -43,8 +43,3 @@ class Notification(Timer):
         tts = gTTS(text=audioString, lang='en')
         tts.save("notify.mp3")
         self.path = "notify.mp3"
-
-
-if __name__ == "__main__":
-    t = Timer()
-    t.alert()
