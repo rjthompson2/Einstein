@@ -9,7 +9,6 @@ class Listener():
     def listen(self):
         with sr.Microphone() as source:
             print("I am listening...")
-            self.r.adjust_for_ambient_noise(source)
             audio = self.r.listen(source)
         data = ""
         try:

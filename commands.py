@@ -3,7 +3,6 @@ from time import ctime
 from gtts import gTTS
 from listener import Listener
 from timer import Timer, Notification
-from arguementMap import ArguementMapTimer
 from threading import Thread
 import os
 import datetime
@@ -61,9 +60,7 @@ class Commands():
             elif "show note" in data or "read note" in data or "show notes" in data or "read notes" in data:
                 self.respond("Reading notes")
                 file = open("notes.txt", "r")
-                print(file.read())
-                read_back = file.read(6)
-                print(read_back)
+                read_back = file.read()
                 if read_back:
                     self.respond(read_back)
                 else:
