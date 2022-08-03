@@ -104,9 +104,7 @@ class Commands():
             elif "playback" in data:
                 self.respond("Playing back recording")
                 file = open("recording.txt", "r")
-                print(file.read())
                 read_back = file.read()
-                print(read_back)
                 if read_back:
                     self.respond(read_back)
                 else:
