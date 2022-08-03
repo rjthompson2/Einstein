@@ -7,4 +7,5 @@ To read the note say "show note"
 To record something say "start recording" the recording will stop once you say "Einstein stop recording"
 To playback the recording say "playback"
 To set a timer say "set a timer for" followed by a timeframe
+To set a notification say "set a notification for" followed by a timeframe. You will then be prompted for what to notify you about
 To do math say "calculate" followed by the problem
