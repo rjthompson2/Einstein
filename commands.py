@@ -2,7 +2,7 @@ from typing import Tuple
 from time import ctime
 from gtts import gTTS
 from listener import Listener
-from timer import Timer
+from timer import Timer, Notification
 from arguementMap import ArguementMapTimer
 from threading import Thread
 import os
@@ -127,6 +127,19 @@ class Commands():
                 else:
                     print(0)
                     timer.alert()
+                    os._exit(0)
+
+            elif "set a notification" in data or 'notify me' in data or 'remind me' in data or 'set a reminder' in data:
+                self.respond("okay what would you like the message to say?")
+                message = self.listener.listen()
+                notification = Notification()
+                notification.set_time(data)
+                notification.set_message(message)
+                pid = os.fork()
+                if pid > 0:
+                    self.respond("Okay notification set")
+                else:
+                    notification.alert()
                     os._exit(0)
 
             else:

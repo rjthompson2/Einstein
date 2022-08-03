@@ -1,12 +1,14 @@
 import subprocess
 import time
 import os
+from gtts import gTTS
 
 #TODO sound not playing
 path = '/Users/rileythompson/' + 'Desktop/Einstein/alarm.wav'
 class Timer():
     def __init__(self):
         self.time = 0
+        self.path = "Desktop/Einstein/alarm.wav"
 
     def set_time(self, message:str) -> None:
         if 'days' in message:
@@ -31,8 +33,17 @@ class Timer():
             time.sleep(1)
             self.time -= 1
             print(self.time)
-        path = "Desktop/Einstein/alarm.wav"
-        os.system("mpg321 " + path)
+        os.system("mpg321 " + self.path)
+
+
+class Notification(Timer):
+    def set_message(self, audioString:str) -> None:
+        print(audioString)
+        audioString = "You have a notification: " + audioString
+        tts = gTTS(text=audioString, lang='en')
+        tts.save("notify.mp3")
+        self.path = "notify.mp3"
+
 
 if __name__ == "__main__":
     t = Timer()
