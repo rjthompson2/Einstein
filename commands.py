@@ -5,7 +5,6 @@ from listener import Listener
 from timer import Timer
 from arguementMap import ArguementMapTimer
 from threading import Thread
-# from thread import start_new_thread
 import os
 import datetime
 
@@ -25,6 +24,7 @@ class Commands():
             print('Listening stopped')
             self.respond("Okay shutting down")
             self.listener.listening = False
+            return
 
         if "hey Einstein" in data or "Einstein you there?" in data:
             self.respond("yes?")
@@ -127,6 +127,7 @@ class Commands():
                 else:
                     print(0)
                     timer.alert()
+                    os._exit(0)
 
             else:
                 print('Unable to process command')

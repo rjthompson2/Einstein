@@ -1,16 +1,14 @@
 import subprocess
 import time
-from playsound import playsound
+import os
 
-#TODO okayish for now need a better system
+#TODO sound not playing
+path = '/Users/rileythompson/' + 'Desktop/Einstein/alarm.wav'
 class Timer():
     def __init__(self):
-        self.set = False
         self.time = 0
 
     def set_time(self, message:str) -> None:
-        # echo /usr/bin/the_command options | at now + 1 day
-        path = "/Users/rileythompson/Desktop" + "/Einstein/timer.py"
         if 'days' in message:
             amount = int(message.split('days')[0].split()[-1])
             amount = amount * 24 * 60 * 60
@@ -26,7 +24,6 @@ class Timer():
         if 'seconds' in message:
             amount = int(message.split('seconds')[0].split()[-1])
             self.time += amount
-        print(self.time)
 
 
     def alert(self) -> None:
@@ -34,9 +31,8 @@ class Timer():
             time.sleep(1)
             self.time -= 1
             print(self.time)
-        print("starting noise")
-        playsound('Desktop/Einstein/alarm.wav')
-        print("Timer done")
+        path = "Desktop/Einstein/alarm.wav"
+        os.system("mpg321 " + path)
 
 if __name__ == "__main__":
     t = Timer()
