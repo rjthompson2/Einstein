@@ -28,7 +28,7 @@ class Commands():
             self.sleep = False
 
         elif not self.sleep:
-            if "what time is it" in data or "what's the time" in data:
+            if "what time is it" in data or "what's the time" in data or 'what is the time' in data:
                 respond(ctime())
                 
             elif "okay thank you" in data:
