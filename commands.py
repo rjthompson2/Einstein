@@ -1,5 +1,4 @@
 from time import ctime
-from gtts import gTTS
 from listener import Listener
 from timer import Timer, Notification
 from utils import respond

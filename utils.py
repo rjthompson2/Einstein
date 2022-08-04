@@ -1,3 +1,5 @@
+from gtts import gTTS
+
 def respond(self, audioString:str) -> None:
     print(audioString)
     tts = gTTS(text=audioString, lang='en')
